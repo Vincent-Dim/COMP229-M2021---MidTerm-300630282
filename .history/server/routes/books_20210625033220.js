@@ -54,7 +54,7 @@ router.post('/add', (req, res, next) => {
     Title: req.body.title_txt,
     Description: "",
     Price: req.body.price_txt,
-    Author: req.body.author_txt,
+    Author: req.body.auther_txt,
     Genre: req.body.genre_txt
 });
 createBook.save().then(() => console.log('the book is saved !'));
@@ -71,30 +71,13 @@ book.find((err, books) => {
 return res.redirect('/books');
 
     /*****************
-     * ADD CODE HERE done *
+     * ADD CODE HERE *
      *****************/
 
 });
 
 // GET the Book Details page in order to edit an existing Book
 router.get('/:id', (req, res, next) => {
-
-  console.log(req.params.id);
-    book.findById(req.params.id.value,(err, books) => {
-        if (err) {
-            return console.error(err);
-        } else {
-            res.render('books/details', {
-                title: "Edit Book",
-                books: book,
-                Title: book.Title,
-                Description: book.Description,
-                Price: book.Price,
-                Author: book.Author,
-                Genre: book.Genre
-            });
-        }
-    });
 
     /*****************
      * ADD CODE HERE *
@@ -105,52 +88,17 @@ router.get('/:id', (req, res, next) => {
 router.post('/:id', (req, res, next) => {
 
     /*****************
-     * ADD CODE HERE done *
+     * ADD CODE HERE *
      *****************/
-     const createBook = new book({
-      Title: req.body.title_txt,
-      Description: "",
-      Price: req.body.price_txt,
-      Author: req.body.author_txt,
-      Genre: req.body.genre_txt
-  });
-  createBook.save().then(() => console.log('book saved !'));
-  book.find((err, books) => {
-      if (err) {
-          return console.error(err);
-      } else {
-          res.render('books/index', {
-              title: 'Books',
-              books: books
-          });
-      }
-  });
 
 });
 
 // GET - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
-  book.findById(id,(err, books) => {
-    if (err) {
-        return console.error(err);
-    } else {
-        res.render('books/details', {
-            title: 'Edit Book',
-            books: books,
-            Title: book.Title,
-            Description: book.Description,
-            Price: book.Price,
-            Author: book.Author,
-            Genre: book.Genre
-        });
-    }
-});
 
     /*****************
-     * ADD CODE HERE done*
+     * ADD CODE HERE *
      *****************/
-    
-    
 });
 
 

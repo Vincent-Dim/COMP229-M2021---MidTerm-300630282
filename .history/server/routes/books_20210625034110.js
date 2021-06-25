@@ -107,14 +107,14 @@ router.post('/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE done *
      *****************/
-     const createBook = new book({
+     const new_book = new book({
       Title: req.body.title_txt,
       Description: "",
       Price: req.body.price_txt,
       Author: req.body.author_txt,
       Genre: req.body.genre_txt
   });
-  createBook.save().then(() => console.log('book saved !'));
+  new_book.save().then(() => console.log('book saved !'));
   book.find((err, books) => {
       if (err) {
           return console.error(err);
@@ -147,7 +147,7 @@ router.get('/delete/:id', (req, res, next) => {
 });
 
     /*****************
-     * ADD CODE HERE done*
+     * ADD CODE HERE *
      *****************/
     
     
