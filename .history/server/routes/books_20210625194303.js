@@ -10,12 +10,10 @@ let book = require('../models/books');
 router.get('/', (req, res, next) => {
   // find all books in the books collection
   book.find( (err, books) => {
-    if (err) 
-    {
+    if (err) {
       return console.error(err);
     }
-    else 
-    {
+    else {
       res.render('books/index', {
         title: 'Books',
         books: books
@@ -28,12 +26,9 @@ router.get('/', (req, res, next) => {
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
   book.find((err, books) => {
-    if (err) 
-    {
+    if (err) {
         return console.error(err);
-    } 
-    else 
-    {
+    } else {
         res.render('books/details', {
             title: 'New Book',
             books: books,
@@ -64,12 +59,9 @@ router.post('/add', (req, res, next) => {
 });
 createBook.save().then(() => console.log('the book is saved !'));
 book.find((err, books) => {
-    if (err) 
-    {
+    if (err) {
         return console.error(err);
-    } 
-    else 
-    {
+    } else {
         res.render('books/index', {
             title: 'Books',
             books: books
@@ -89,12 +81,9 @@ router.get('/:id', (req, res, next) => {
 
   console.log(req.params.id);
     book.findById(req.params.id.value,(err, books) => {
-        if (err) 
-        {
+        if (err) {
             return console.error(err);
-        } 
-        else 
-        {
+        } else {
             res.render('books/details', {
                 title: "Edit Book",
                 books: book,
@@ -127,12 +116,9 @@ router.post('/:id', (req, res, next) => {
   });
   createBook.save().then(() => console.log('book saved !'));
   book.find((err, books) => {
-      if (err) 
-      {
+      if (err) {
           return console.error(err);
-      } 
-      else 
-      {
+      } else {
           res.render('books/index', {
               title: 'Books',
               books: books
@@ -144,30 +130,10 @@ router.post('/:id', (req, res, next) => {
 
 // GET - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
-  
-  let id = req.params.id;
-
-  book.remove({_id: id}, (err) => {
-      if(err)
-      {
-          console.log(err);
-          res.end(err);
-      }
-      else
-      {
-          //refresh the book list
-          res.redirect('/books');
-      }
-  });
- 
-  
-    /*book.findById(id,(err, books) => {
-    if (err) 
-    {
+  book.findById(id,(err, books) => {
+    if (err) {
         return console.error(err);
-    } 
-    else 
-    {
+    } else {
         res.render('books/details', {
             title: 'Edit Book',
             books: books,
@@ -177,8 +143,8 @@ router.get('/delete/:id', (req, res, next) => {
             Author: book.Author,
             Genre: book.Genre
         });
-    }*/
-
+    }
+});
 
     /*****************
      * ADD CODE HERE done*
