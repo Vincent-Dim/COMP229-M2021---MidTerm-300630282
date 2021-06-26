@@ -28,12 +28,9 @@ router.get('/', (req, res, next) => {
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
     book.find((err, books) => {
-        if (err) 
-        {
+        if (err) {
             return console.error(err);
-        } 
-        else 
-        {
+        } else {
             res.render('books/details', {
                 title: 'New Book',
                 books: books,
@@ -60,28 +57,27 @@ router.post('/add', (req, res, next) =>
 {
 
   let createBook = book({
-    "Title": req.body.Title,
-    "Description": req.body.Description,
-    "Price": req.body.Price,
-    "Author": req.body.Author,
-    "Genre": req.body.Genre
-  });
+    Title: req.body.title_txt,
+        Description: "",
+        Price: req.body.price_txt,
+        Author: req.body.auther_txt,
+        Genre: req.body.genre_txt
+    });
+    new_book.save().then(() => console.log('book saved !'));
+    book.find((err, books) => {
+        if (err) {
+            return console.error(err);
+        } else {
+            res.render('books/index', {
+                title: 'Books',
+                books: books
+            });
+        }
+    });
+    return res.redirect('/books');
 
-   book.create(createBook, (err, books) => {
-      if (err) 
-      {
-          return console.error(err);
-      } 
-      else 
-      {
-          res.render('books/index', {
-              
-          });
-      }
-  });
-  return res.redirect('/books');
+
 });
-
 
 
     /*****************

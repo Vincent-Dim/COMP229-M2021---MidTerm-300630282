@@ -28,12 +28,9 @@ router.get('/', (req, res, next) => {
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
     book.find((err, books) => {
-        if (err) 
-        {
+        if (err) {
             return console.error(err);
-        } 
-        else 
-        {
+        } else {
             res.render('books/details', {
                 title: 'New Book',
                 books: books,
@@ -67,7 +64,8 @@ router.post('/add', (req, res, next) =>
     "Genre": req.body.Genre
   });
 
-   book.create(createBook, (err, books) => {
+  createBook.save().then(() => console.log('book added !'));
+  book.create(createBook, (err, books) => {
       if (err) 
       {
           return console.error(err);
