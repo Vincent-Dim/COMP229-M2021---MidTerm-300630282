@@ -97,12 +97,9 @@ router.get('/edit/:id', (req, res, next) =>
 {
     console.log(req.params.id);
     book.findById(req.params.id.value,(err, books) => {
-        if (err) 
-        {
+        if (err) {
             return console.error(err);
-        } 
-        else 
-        {
+        } else {
             res.render('books/details', {
                 title: "Edit Book",
                 books: book,

@@ -95,25 +95,22 @@ router.post('/add', (req, res, next) =>
 // GET the Book Details page in order to edit an existing Book
 router.get('/edit/:id', (req, res, next) => 
 {
-    console.log(req.params.id);
-    book.findById(req.params.id.value,(err, books) => {
-        if (err) 
+    let id = req.params.id;  
+
+    book.findById(id, (err, bookToEdit) => {
+
+        if(err)
         {
-            return console.error(err);
-        } 
-        else 
-        {
-            res.render('books/details', {
-                title: "Edit Book",
-                books: book,
-                Title: book.Title,
-                Description: book.Description,
-                Price: book.Price,
-                Author: book.Author,
-                Genre: book.Genre
-            });
+            console.log(err);
+            res.end(err);
         }
-    });
+        else{
+            res.render('books/edit', {title: 'Edit Book', book: bookToEdit})
+        }
+    })
+
+  res.render('books/add', {title: 'Add Book'})
+
 });
    
 
