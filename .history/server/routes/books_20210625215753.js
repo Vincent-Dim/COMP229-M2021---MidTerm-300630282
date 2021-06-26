@@ -27,24 +27,8 @@ router.get('/', (req, res, next) => {
 
 //  GET the Book Details page in order to add a new Book
 router.get('/add', (req, res, next) => {
-    book.find((err, books) => {
-        if (err) {
-            return console.error(err);
-        } else {
-            res.render('books/details', {
-                title: 'New Book',
-                books: books,
-                Title: book.Title,
-                Description: book.Description,
-                Price: book.Price,
-                Author: book.Author,
-                Genre: book.Genre
-            });
-        }
-    });
-
+  res.render('book/details', {title: 'Add Book'})
 });
- 
 
     /*****************
      * ADD CODE HERE done *

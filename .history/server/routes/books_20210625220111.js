@@ -44,7 +44,12 @@ router.get('/add', (req, res, next) => {
     });
 
 });
- 
+
+
+
+
+  /*res.render('book/details', {title: 'Add Book'})
+});*/
 
     /*****************
      * ADD CODE HERE done *
