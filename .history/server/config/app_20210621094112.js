@@ -1,4 +1,4 @@
-// modules for node and express
+// moddules for node and express
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
